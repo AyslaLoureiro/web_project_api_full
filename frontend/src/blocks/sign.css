@@ -1,0 +1,70 @@
+.sign {
+  /* width: 1028px;
+  height: 720px; */
+  background-color: black;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.sign__welcome {
+  color: white;
+  width: 358px;
+  height: 29px;
+  font-family: inter;
+  font-weight: 900;
+  size: 24px;
+  display: flex;
+  justify-content: center;
+  margin-top: 60px;
+  margin-bottom: 0px;
+}
+.sign__signup {
+  color: white;
+  display: flex;
+  gap: 4px;
+  margin-top: 16px;
+  margin-bottom: 80px;
+}
+.sign__redirect-link {
+  color: white;
+  text-decoration: none;
+}
+.sign__text {
+  margin: 0;
+}
+.sign__link {
+  width: 358px;
+  height: 58px;
+  padding: 0;
+  border-radius: 2px;
+  margin-top: 216px;
+  color: black;
+  justify-content: center;
+  cursor: pointer;
+}
+.sign__form {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+}
+.sign__form-input {
+  display: flex;
+  flex-direction: column;
+}
+.sign__input {
+  background-color: transparent;
+  color: white;
+  border: none;
+  border-bottom: 2px solid gray;
+  outline: none;
+}
+
+.sign__input:-webkit-autofill,
+.sign__input:-webkit-autofill:hover,
+.sign__input:-webkit-autofill:focus,
+.sign__input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px black inset;
+  box-shadow: 0 0 0 1000px black inset;
+  color: white;
+  background-color: transparent;
+}

@@ -1,0 +1,17 @@
+.footer {
+  display: flex;
+  max-width: 880px;
+  width: 100%;
+  color: #545454;
+  margin-top: 67px;
+  margin-bottom: 60px;
+  justify-content: flex-start;
+}
+@media (max-width: 720px) {
+  .footer {
+    width: 282px;
+    margin-top: 50px;
+    margin-bottom: 36px;
+    justify-content: flex-start;
+  }
+}

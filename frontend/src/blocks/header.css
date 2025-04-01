@@ -1,0 +1,39 @@
+.header {
+  width: 880px;
+  margin-top: 45px;
+  left: 200px;
+  color: #ffffff;
+}
+.header__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header__props-text {
+  color: white;
+  text-decoration: none;
+}
+.header__info {
+  display: flex;
+  flex-direction: row;
+  gap: 56px;
+}
+.header__button {
+  background: none;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+@media (max-width: 720px) {
+  .header {
+    width: 100%;
+    margin-top: 28px;
+  }
+  .header__logo {
+    width: 126px;
+    margin-left: 27px;
+  }
+  .header__line {
+    width: 100%;
+  }
+}
