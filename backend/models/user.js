@@ -42,21 +42,23 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-userSchema.statics.findUserByCredentials = (email, password) => {
-  this.findOne({ email })
-    .select("+password")
-    .then((user) => {
-      if (!user) {
-        return {
-          statusCode: 401,
-          message: "Email ou senha incorretos!",
-        };
-      }
-      return {
-        validateHash: validateHash(password, user.password),
-        user,
-      };
-    });
+userSchema.statics.findUserByCredentials = async function ({
+  email,
+  password,
+}) {
+  const result = await this.findOne({ email }).select("+password");
+
+  if (!result) {
+    return {
+      statusCode: 401,
+      message: "Email ou senha incorretos!",
+    };
+  }
+
+  return {
+    validateHash: validateHash(password, result.password),
+    user: result,
+  };
 };
 
 module.exports = mongoose.model("user", userSchema);
