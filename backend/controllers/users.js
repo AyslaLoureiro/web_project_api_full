@@ -14,8 +14,8 @@ function getUsers(_req, res, next) {
       return res.status(200).json(users);
     })
     .catch((error) => {
-      console.error("getUsers Error:", err);
-      next(error);
+      console.error("getUsers Error:", error);
+      return error;
     });
 }
 
@@ -38,12 +38,12 @@ function getUserById(req, res, next) {
       return res.status(200).json(user);
     })
     .catch((error) => {
-      console.error("getUserById Error:", err);
-      next(error);
+      console.error("getUserById Error:", error);
+      return error;
     });
 }
 
-function login(req, res, next) {
+function login(req, res) {
   const { email, password } = req.body;
 
   if (!email && !password) {
@@ -77,15 +77,15 @@ function login(req, res, next) {
       });
     })
     .catch((error) => {
-      console.error("createUser Error:", err);
-      next(error);
+      console.error("createUser Error:", error);
+      return error;
     });
 }
 
-function createUser(req, res, next) {
-  const { name, about, avatar, email, password } = req.body;
-
-  if (!name && !about && !avatar && !email && !password) {
+function createUser(req, res) {
+  const { email, password } = req.body;
+  console.log(email, password);
+  if (!email && !password) {
     const error = new Error("Dados inválidos");
     error.status = 400;
     throw error;
@@ -94,9 +94,10 @@ function createUser(req, res, next) {
   const hashedPassword = createHash(password);
 
   return User.create({
-    name,
-    about,
-    avatar,
+    name: "Jacs",
+    about: "DEV",
+    avatar:
+      "https://image.freepik.com/fotos-gratis/programador-em-desenvolvimento-desenvolvimento-design-de-sites-e-tecnologias-de-codificacao-trabalhando-no-escritorio-da-empresa-de-software_18497-1234.jpg",
     email,
     password: hashedPassword,
   })
@@ -110,8 +111,8 @@ function createUser(req, res, next) {
       return res.status(201).json(user);
     })
     .catch((error) => {
-      console.error("createUser Error:", err);
-      next(error);
+      console.error("createUser Error:", error);
+      return error;
     });
 }
 
@@ -141,11 +142,11 @@ function updateUserProfile(req, res, next) {
     })
     .catch((error) => {
       console.error("updateUserProfile Error:", error);
-      next(error);
+      return error;
     });
 }
 
-function updateUserAvatar(req, res, next) {
+function updateUserAvatar(req, res) {
   const { avatar } = req.body;
   const userId = req.user._id;
 
@@ -170,7 +171,7 @@ function updateUserAvatar(req, res, next) {
     })
     .catch((error) => {
       console.error("updateUserAvatar Error:", error);
-      next(error);
+      return error;
     });
 }
 

@@ -1,7 +1,7 @@
 const { Error } = require("mongoose");
 const Card = require("../models/card.js");
 
-function getCards(req, res, next) {
+function getCards(_req, res) {
   return Card.find({})
     .then((cards) => {
       if (!cards) {
@@ -14,11 +14,11 @@ function getCards(req, res, next) {
     })
     .catch((error) => {
       console.error("getCards Error:", error);
-      next(error);
+      return error;
     });
 }
 
-function createCards(req, res, next) {
+function createCards(req, res) {
   const { name, link } = req.body;
 
   if (!name && !link) {
@@ -45,11 +45,11 @@ function createCards(req, res, next) {
     })
     .catch((error) => {
       console.error("createCards Error:", error);
-      next(error);
+      return error;
     });
 }
 
-function deleteCardById(req, res, next) {
+function deleteCardById(req, res) {
   const { cardId } = req.params;
 
   if (!cardId) {
@@ -73,11 +73,11 @@ function deleteCardById(req, res, next) {
     })
     .catch((error) => {
       console.error("deleteCardById Error:", error);
-      next(error);
+      return error;
     });
 }
 
-function likeCard(req, res, next) {
+function likeCard(req, res) {
   const { cardId } = req.params;
 
   if (!cardId) {
@@ -111,11 +111,11 @@ function likeCard(req, res, next) {
     })
     .catch((error) => {
       console.error("likeCard Error:", error);
-      next(error);
+      return error;
     });
 }
 
-function dislikeCard(req, res, next) {
+function dislikeCard(req, res) {
   const { cardId } = req.params;
 
   if (!cardId) {
@@ -149,7 +149,7 @@ function dislikeCard(req, res, next) {
     })
     .catch((error) => {
       console.error("dislikeCard Error:", error);
-      next(error);
+      return error;
     });
 }
 

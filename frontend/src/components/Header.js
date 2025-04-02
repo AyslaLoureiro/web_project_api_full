@@ -32,7 +32,7 @@ export default function Header(props) {
           ) : null}
           {isLoggedIn ? (
             <div className="header__info">
-              <p> {currentUser.name} </p>
+              <p> {currentUser?.name} </p>
               <button className="header__button" onClick={handleLogout}>
                 Sair
               </button>

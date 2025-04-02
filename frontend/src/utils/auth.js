@@ -1,7 +1,7 @@
 export const BASE_URL = "https://api.around-us.mooo.com";
 
 export const signin = (email, password) => {
-  return fetch(`${BASE_URL}/signin`, {
+  return fetch(`${BASE_URL}/users/signin`, {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -19,7 +19,7 @@ export const signin = (email, password) => {
 };
 
 export const signup = (email, password) => {
-  return fetch(`${BASE_URL}/signup`, {
+  return fetch(`${BASE_URL}/users/signup`, {
     method: "POST",
     headers: {
       Accept: "application/json",

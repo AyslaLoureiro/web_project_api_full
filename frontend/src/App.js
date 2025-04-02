@@ -38,7 +38,6 @@ export function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loggedWithSucess, setLoggedWithSucess] = useState({});
   const navigate = useNavigate();
-  const location = useLocation();
   const jwt = getToken();
   const api = getAPIInstance(jwt);
 
@@ -70,22 +69,24 @@ export function App() {
   };
 
   useEffect(() => {
-    setUserData();
-    setInitialCards();
+    if (jwt) {
+      setUserData();
+      setInitialCards();
+    }
   }, []);
 
-  useEffect(() => {
-    api
-      .getUserInfo(jwt)
-      .then((userData) => {
-        setIsLoggedIn(true);
-        setCurrentUser(userData);
-      })
-      .catch((err) => {
-        console.error("Erro ao validar o JWT:", err);
-        setIsLoggedIn(false);
-      });
-  }, []);
+  // useEffect(() => {
+  //   api
+  //     .getUserInfo(jwt)
+  //     .then((userData) => {
+  //       setIsLoggedIn(true);
+  //       setCurrentUser(userData);
+  //     })
+  //     .catch((err) => {
+  //       console.error("Erro ao validar o JWT:", err);
+  //       setIsLoggedIn(false);
+  //     });
+  // }, []);
 
   const handleLogin = ({ email, password }) => {
     if (!email || !password) {

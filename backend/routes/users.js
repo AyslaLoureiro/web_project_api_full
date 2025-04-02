@@ -18,6 +18,7 @@ router.get("/me", auth, getUserById);
 router.post("/signup", createUser);
 
 router.post("/signin", login);
+
 // para trocar apenas uma coisa
 router.patch("/", auth, updateUserProfile);
 
