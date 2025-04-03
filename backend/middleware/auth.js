@@ -1,9 +1,7 @@
 const jwt = require("jsonwebtoken");
 const { JWT_SECRET = "dev-secret" } = process.env;
 
-const extractBearerToken = (token) => {
-  token.replace("Bearer ", "");
-};
+const extractBearerToken = (token) => token.replace("Bearer ", "");
 
 const auth = (req, res, next) => {
   const { authorization } = req.headers;
