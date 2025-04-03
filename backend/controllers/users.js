@@ -20,15 +20,16 @@ function getUsers(_req, res, next) {
 }
 
 function getUserById(req, res, next) {
-  const { _id: userId } = req.user;
+  const { _id } = req.user;
+  console.log(">>>>>>>>>>>>>>>>>>>>>", req.user);
 
-  if (!userId) {
+  if (!_id) {
     const error = new Error("Dados inválidos");
     error.status = 400;
     throw error;
   }
 
-  return User.findById(userId)
+  return User.findById(_id)
     .orFail(() => {
       const error = new Error("Usuário não encontrado");
       error.status = 404;
