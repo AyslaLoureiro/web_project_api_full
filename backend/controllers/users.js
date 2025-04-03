@@ -84,7 +84,7 @@ function login(req, res) {
 
 function createUser(req, res) {
   const { email, password } = req.body;
-  console.log(email, password);
+
   if (!email && !password) {
     const error = new Error("Dados inválidos");
     error.status = 400;
