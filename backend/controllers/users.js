@@ -2,7 +2,7 @@ const User = require("../models/user.js");
 const { createHash } = require("../utils/hash.js");
 const jwt = require("jsonwebtoken");
 
-function getUsers(_req, res, next) {
+function getUsers(_req, res) {
   return User.find({})
     .then((users) => {
       if (!users) {
@@ -19,9 +19,8 @@ function getUsers(_req, res, next) {
     });
 }
 
-function getUserById(req, res, next) {
+function getUserById(req, res) {
   const { _id } = req.user;
-  console.log(">>>>>>>>>>>>>>>>>>>>>", req.user);
 
   if (!_id) {
     const error = new Error("Dados inválidos");
@@ -57,20 +56,18 @@ function login(req, res) {
     email,
     password,
   })
-    .then((user) => {
-      if (user.statusCode && user.statusCode === 401) {
-        const error = new Error(user.message);
-        error.status = user.statusCode;
+    .then((result) => {
+      if (result.statusCode && result.statusCode === 401) {
+        const error = new Error(result.message);
+        error.status = result.statusCode;
         throw error;
       }
 
-      return res.status(200).json({
-        userId: user._id,
+      response.status(200).json({
+        userId: result.user._id,
         token: jwt.sign(
-          { _id: user._id },
-          process.env.NODE_ENV === "production"
-            ? process.env.JWT_SECRET
-            : "dev-secret",
+          { _id: result.user._id },
+          NODE_ENV === "production" ? JWT_SECRET : "dev-secret",
           {
             expiresIn: "7d",
           }
@@ -117,7 +114,7 @@ function createUser(req, res) {
     });
 }
 
-function updateUserProfile(req, res, next) {
+function updateUserProfile(req, res) {
   const { name, about } = req.body;
   const userId = req.user._id;
   const updatedFields = {};
