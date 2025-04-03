@@ -19,7 +19,10 @@ const auth = (req, res, next) => {
 
   try {
     payload = jwt.verify(token, JWT_SECRET);
+    console.log(">>>>>>>>>>>>>>", token);
+    console.log(">>>>>>>>>>>>>>", payload);
   } catch (error) {
+    console.log(">>>>>>>>>>>>>>", "ENTREI");
     return res.status(401).json({
       statusCode: 401,
       message: "Autorização Necessária",

@@ -9,14 +9,14 @@ const {
 } = require("../controllers/cards");
 
 // Rota para buscar todos os cards
-router.get("/", getCards);
+router.get("/", auth, getCards);
 
-router.post("/", createCards);
+router.post("/", auth, createCards);
 
-router.delete("/:cardId", deleteCardById);
+router.delete("/:cardId", auth, deleteCardById);
 
-router.put("/:cardId/likes", likeCard);
+router.put("/:cardId/likes", auth, likeCard);
 
-router.delete("/:cardId/likes", dislikeCard);
+router.delete("/:cardId/likes", auth, dislikeCard);
 
 module.exports = router;
