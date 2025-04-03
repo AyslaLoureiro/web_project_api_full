@@ -176,10 +176,10 @@ export const getAPIInstance = (token) => {
   const api = new Api({
     baseUrl: "https://api.around-us.mooo.com",
     headers: {
-      authorization: token,
+      authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
     },
   });
 
   return api;
-}
+};

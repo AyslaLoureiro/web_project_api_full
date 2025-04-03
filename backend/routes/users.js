@@ -10,19 +10,19 @@ const {
 const auth = require("../middleware/auth.js");
 
 // Rota para buscar todos os usuários
-router.get("/", auth, getUsers);
+router.get("/", getUsers);
 
 // Rota para obter usuário pelo ID
-router.get("/me", auth, getUserById);
+router.get("/me", getUserById);
 
 router.post("/signup", createUser);
 
 router.post("/signin", login);
 
 // para trocar apenas uma coisa
-router.patch("/", auth, updateUserProfile);
+router.patch("/", updateUserProfile);
 
 // para trocar tudo
-router.put("/", auth, updateUserAvatar);
+router.put("/", updateUserAvatar);
 
 module.exports = router;
