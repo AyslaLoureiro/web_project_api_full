@@ -8,7 +8,11 @@ const { PORT = 3000 } = process.env;
 const app = express();
 app.use(
   cors({
-    origin: "*",
+    origin: [
+      "http://192.168.0.8:3000",
+      "http://around-us.mooo.com",
+      "http://wwww.around-us.mooo.com",
+    ],
   })
 );
 

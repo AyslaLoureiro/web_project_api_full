@@ -58,6 +58,7 @@ function login(req, res) {
   })
     .then((result) => {
       if (result.statusCode && result.statusCode === 401) {
+        console.log(">>>>>>>>>>>>>>>> ei");
         const error = new Error(result.message);
         error.status = result.statusCode;
         throw error;
@@ -75,7 +76,7 @@ function login(req, res) {
       });
     })
     .catch((error) => {
-      console.error("createUser Error:", error);
+      console.error("Login Error:", error);
       return error;
     });
 }
