@@ -47,10 +47,6 @@ userSchema.statics.findUserByCredentials = async function ({
   password,
 }) {
   const result = await this.findOne({ email }).select("+password");
-  console.log(
-    ">>>>>>>>>>>>>>> findUserByCredentials <<<<<<<<<<<<<<<<<",
-    result
-  );
 
   if (!result) {
     return {

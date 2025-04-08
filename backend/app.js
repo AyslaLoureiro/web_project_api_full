@@ -10,8 +10,8 @@ app.use(
   cors({
     origin: [
       "http://192.168.0.8:3000",
-      "http://around-us.mooo.com",
-      "http://wwww.around-us.mooo.com",
+      "https://around-us.mooo.com",
+      "https://wwww.around-us.mooo.com",
     ],
   })
 );

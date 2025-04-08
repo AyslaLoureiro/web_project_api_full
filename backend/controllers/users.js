@@ -2,7 +2,7 @@ const User = require("../models/user.js");
 const { createHash } = require("../utils/hash.js");
 const jwt = require("jsonwebtoken");
 
-function getUsers(_req, res) {
+function getUsers(req, res) {
   return User.find({})
     .then((users) => {
       if (!users) {
@@ -58,17 +58,16 @@ function login(req, res) {
   })
     .then((result) => {
       if (result.statusCode && result.statusCode === 401) {
-        console.log(">>>>>>>>>>>>>>>> ei");
         const error = new Error(result.message);
         error.status = result.statusCode;
         throw error;
       }
 
-      response.status(200).json({
+      return res.status(200).json({
         userId: result.user._id,
         token: jwt.sign(
           { _id: result.user._id },
-          NODE_ENV === "production" ? JWT_SECRET : "dev-secret",
+          process.env.NODE_ENV === "production" ? JWT_SECRET : "dev-secret",
           {
             expiresIn: "7d",
           }
