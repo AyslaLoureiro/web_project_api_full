@@ -107,7 +107,7 @@ function likeCard(req, res) {
     .then((newCard) => {
       return res.status(200).json({
         message: "Like efetuado com sucesso",
-        newCard: { ...newCard, isLiked: true },
+        newCard: { ...newCard._doc, isLiked: true },
       });
     })
     .catch((error) => {
@@ -146,7 +146,7 @@ function dislikeCard(req, res) {
     .then((newCard) => {
       return res.status(200).json({
         message: "Dislike efetuado com sucesso",
-        newCard: { ...newCard, isLiked: false },
+        newCard: { ...newCard._doc, isLiked: false },
       });
     })
     .catch((error) => {
