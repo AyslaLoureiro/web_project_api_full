@@ -104,9 +104,10 @@ function likeCard(req, res) {
       error.status = 500;
       throw error;
     })
-    .then(() => {
-      return res.status(200).send({
+    .then((newCard) => {
+      return res.status(200).json({
         message: "Like efetuado com sucesso",
+        newCard,
       });
     })
     .catch((error) => {
@@ -142,9 +143,10 @@ function dislikeCard(req, res) {
       error.status = 500;
       throw error;
     })
-    .then(() => {
-      return res.status(200).send({
+    .then((newCard) => {
+      return res.status(200).json({
         message: "Dislike efetuado com sucesso",
+        newCard,
       });
     })
     .catch((error) => {

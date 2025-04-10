@@ -15,16 +15,13 @@ class Api {
         // se o servidor retornar um erro, rejeite a promessa
         return Promise.reject(`Error: ${res.status}`);
       })
-      .then((result) => {
-        return result;
-      })
       .catch((err) => {
         console.log(err); // registra o erro no console
       });
   }
 
   editUserInfo({ name, about }) {
-    return fetch(`${this._baseUrl}/users/me`, {
+    return fetch(`${this._baseUrl}/users`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
@@ -38,9 +35,6 @@ class Api {
         }
         // se o servidor retornar um erro, rejeite a promessa
         return Promise.reject(`Error: ${res.status}`);
-      })
-      .then((result) => {
-        return result;
       })
       .catch((err) => {
         console.log(err); // registra o erro no console
@@ -57,9 +51,6 @@ class Api {
         }
         // se o servidor retornar um erro, rejeite a promessa
         return Promise.reject(`Error: ${res.status}`);
-      })
-      .then((result) => {
-        return result;
       })
       .catch((err) => {
         console.log(err); // registra o erro no console
@@ -81,16 +72,13 @@ class Api {
         // se o servidor retornar um erro, rejeite a promessa
         return Promise.reject(`Error: ${res.status}`);
       })
-      .then((result) => {
-        return result;
-      })
       .catch((err) => {
         console.log(err); // registra o erro no console
       });
   }
 
   addLike(cardId) {
-    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: "PUT",
       headers: this._headers,
     })
@@ -101,16 +89,13 @@ class Api {
         // se o servidor retornar um erro, rejeite a promessa
         return Promise.reject(`Error: ${res.status}`);
       })
-      .then((result) => {
-        return result;
-      })
       .catch((err) => {
         console.log(err); // registra o erro no console
       });
   }
 
   removeLike(cardId) {
-    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: "DELETE",
       headers: this._headers,
     })
@@ -120,9 +105,6 @@ class Api {
         }
         // se o servidor retornar um erro, rejeite a promessa
         return Promise.reject(`Error: ${res.status}`);
-      })
-      .then((result) => {
-        return result;
       })
       .catch((err) => {
         console.log(err); // registra o erro no console
@@ -139,9 +121,6 @@ class Api {
         }
         // se o servidor retornar um erro, rejeite a promessa
         return Promise.reject(`Error: ${res.status}`);
-      })
-      .then((result) => {
-        return result;
       })
       .catch((err) => {
         console.log(err); // registra o erro no console
@@ -162,9 +141,6 @@ class Api {
         }
         // se o servidor retornar um erro, rejeite a promessa
         return Promise.reject(`Error: ${res.status}`);
-      })
-      .then((result) => {
-        return result;
       })
       .catch((err) => {
         console.log(err); // registra o erro no console

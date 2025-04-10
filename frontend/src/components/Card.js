@@ -15,8 +15,8 @@ export default function Card({
     onCardClick(card);
   }
 
-  const isOwner = card.owner._id === currentUser._id;
-  const isLiked = card?.likes.some((like) => like._id === currentUser._id);
+  const isOwner = card?.owner === currentUser?._id;
+  const isLiked = card?.likes?.some((like) => like?._id === currentUser?._id);
   const cardLikeButtonClassName = `elements__heart ${
     isLiked ? "elements__heart_is-active" : ""
   }`;
@@ -33,21 +33,21 @@ export default function Card({
         </button>
       )}
       <img
-        src={card.link}
+        src={card?.link}
         alt="elementimg"
         className="elements__image"
         onClick={handleClick}
       />
 
       <div className="elements__content">
-        <h2 className="elements__title"> {card.name} </h2>
+        <h2 className="elements__title"> {card?.name} </h2>
         <div className="elements__container-like-button">
           <button
             className={cardLikeButtonClassName}
             alt="heart icon"
             onClick={() => onCardLike({ ...card, isLiked })}
           />
-          <span className="elements__count-like"> {card?.likes.length} </span>
+          <span className="elements__count-like"> {card?.likes?.length} </span>
         </div>
       </div>
     </div>

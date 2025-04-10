@@ -28,6 +28,10 @@ app.use("/users", userRoutes);
 // Rotas de cards
 app.use("/cards", cardRoutes);
 
+app.use((err, req, res, next) => {
+  res.status(500).send({ message: "Ocorreu um arro no servidor" });
+});
+
 app.use((req, res) => {
   res.status(404).json({ message: "Router not found" });
 });

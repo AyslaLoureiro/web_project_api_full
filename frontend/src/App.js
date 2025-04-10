@@ -1,10 +1,4 @@
-import {
-  Routes,
-  Route,
-  Navigate,
-  useNavigate,
-  useLocation,
-} from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import Header from "./components/Header";
 import Main from "./components/Main";
 import Footer from "./components/Footer";
@@ -72,21 +66,18 @@ export function App() {
     if (jwt) {
       setUserData();
       setInitialCards();
+      setIsLoggedIn(true);
+    }
+  }, [jwt]);
+
+  useEffect(() => {
+    // Verifica o estado de login no localStorage
+    const storedLoginStatus = localStorage.getItem("isLoggedIn");
+    if (storedLoginStatus === "true") {
+      setIsLoggedIn(true);
+      navigate("/");
     }
   }, []);
-
-  // useEffect(() => {
-  //   api
-  //     .getUserInfo(jwt)
-  //     .then((userData) => {
-  //       setIsLoggedIn(true);
-  //       setCurrentUser(userData);
-  //     })
-  //     .catch((err) => {
-  //       console.error("Erro ao validar o JWT:", err);
-  //       setIsLoggedIn(false);
-  //     });
-  // }, []);
 
   const handleLogin = ({ email, password }) => {
     if (!email || !password) {
@@ -104,7 +95,8 @@ export function App() {
         if (data.token) {
           setToken(data.token);
           setIsLoggedIn(true);
-          setUserData();
+          // setUserData();
+          localStorage.setItem("isLoggedIn", "true");
           navigate("/");
         }
       })
@@ -168,6 +160,7 @@ export function App() {
   };
 
   async function handleCardLike(card) {
+    console.log(">>>>>>>>>>>>>>>>>> card", card);
     // Verificar mais uma vez se esse cartão já foi curtido
     const isLiked = card.isLiked;
     if (isLiked) {
@@ -183,11 +176,12 @@ export function App() {
         .catch((error) => console.error(error));
     } else {
       await api
-        .addLike(card._id)
+        .addLike(card?._id)
         .then((newCard) => {
+          console.log(">>>>>>>>>>>>>>>>>> newCard", newCard);
           setCards((state) =>
             state.map((currentCard) =>
-              currentCard._id === card._id ? newCard : currentCard
+              currentCard?._id === card?._id ? newCard : currentCard
             )
           );
         })
@@ -233,12 +227,8 @@ export function App() {
       }}
     >
       <Routes>
-        <Route path="/login" element={<Login handleLogin={handleLogin} />} />
         <Route
-          path="/register"
-          element={<Register handleRegistration={handleRegistration} />}
-        />
-        <Route
+          exact
           path="/"
           element={
             <ProtectedRoute>
@@ -276,6 +266,11 @@ export function App() {
               </div>
             </ProtectedRoute>
           }
+        />
+        <Route path="/login" element={<Login handleLogin={handleLogin} />} />
+        <Route
+          path="/register"
+          element={<Register handleRegistration={handleRegistration} />}
         />
       </Routes>
       {loggedWithSucess && (
