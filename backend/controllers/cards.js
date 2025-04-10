@@ -1,13 +1,12 @@
 const { Error } = require("mongoose");
+const AppError = require("../utils/AppError.js");
 const Card = require("../models/card.js");
 
 function getCards(_req, res) {
   return Card.find({})
     .then((cards) => {
       if (!cards) {
-        const error = new Error("Cartões não encontrados");
-        error.status = 404;
-        throw error;
+        throw new AppError("Nenhum cartão encontrado, 404");
       }
 
       return res.status(200).json(cards);
@@ -36,9 +35,7 @@ function createCards(req, res) {
   return Card.create(newCard)
     .then((card) => {
       if (!card) {
-        const error = new Error("Error ao criar o cartão");
-        error.status = 500;
-        throw error;
+        throw new AppError("Error ao criar o cartão", 500);
       }
 
       return res.status(201).json(card);
@@ -53,18 +50,14 @@ function deleteCardById(req, res) {
   const { cardId } = req.params;
 
   if (!cardId) {
-    const error = new Error("Dados inválidos");
-    error.status = 400;
-    throw error;
+    throw new AppError("Dados inválidos", 400);
   }
 
   const userId = req.user._id;
 
   return Card.deleteOne({ _id: cardId, owner: userId })
     .orFail(() => {
-      const error = new Error("Error ao deletar o cartão");
-      error.status = 500;
-      throw error;
+      throw new AppError("Error ao deletar o cartão", 500);
     })
     .then(() => {
       return res.status(204).send({
@@ -81,9 +74,7 @@ function likeCard(req, res) {
   const { cardId } = req.params;
 
   if (!cardId) {
-    const error = new Error("Dados inválidos");
-    error.status = 400;
-    throw error;
+    throw new AppError("Dados inválidos", 400);
   }
 
   const userId = req.user._id;
@@ -100,9 +91,7 @@ function likeCard(req, res) {
     }
   )
     .orFail(() => {
-      const error = new Error("Error ao dar like no cartão");
-      error.status = 500;
-      throw error;
+      throw new AppError("Error ao dar like no cartão", 500);
     })
     .then((newCard) => {
       return res.status(200).json({
@@ -120,9 +109,7 @@ function dislikeCard(req, res) {
   const { cardId } = req.params;
 
   if (!cardId) {
-    const error = new Error("Dados inválidos");
-    error.status = 400;
-    throw error;
+    throw new AppError("Dados inválidos", 400);
   }
 
   const userId = req.user._id;
@@ -139,9 +126,7 @@ function dislikeCard(req, res) {
     }
   )
     .orFail(() => {
-      const error = new Error("Error ao dar like no cartão");
-      error.status = 500;
-      throw error;
+      throw new AppError("Error ao dar like no cartão", 500);
     })
     .then((newCard) => {
       return res.status(200).json({

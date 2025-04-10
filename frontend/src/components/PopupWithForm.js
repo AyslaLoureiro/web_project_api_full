@@ -4,12 +4,9 @@ export default function PopupWithForm({
   name,
   title,
   children,
-  buttonName,
   isOpen,
   onClose,
-  isFormValid,
   handleSubmit,
-  isLoading,
 }) {
   return (
     <div className={`popup ${name} ${isOpen ? "popup__open" : ""}`}>
@@ -21,7 +18,7 @@ export default function PopupWithForm({
           </div>
           <h2 className="popup__title"> {title} </h2>
           {children}
-          <button
+          {/* <button
             className={`button button-submit ${
               !isFormValid && name !== "confirmation" ? "button__disabled" : ""
             }`}
@@ -29,7 +26,7 @@ export default function PopupWithForm({
             required={name === "confirmation" ? false : !isFormValid}
           >
             {isLoading ? "Salvando..." : buttonName}
-          </button>
+          </button> */}
         </div>
       </form>
     </div>

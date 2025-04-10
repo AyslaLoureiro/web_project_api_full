@@ -37,12 +37,9 @@ export default function PopupEditProfile({ isOpen, onClose }) {
     <PopupWithForm
       id="popup__edit-profile"
       title="Editar Perfil"
-      buttonName="Salvar"
       isOpen={isOpen}
       onClose={onClose}
-      isFormValid={isFormValid}
       handleSubmit={handleSubmit}
-      isLoading={isLoading}
     >
       <div className="popup__form-inputs">
         <input
@@ -79,6 +76,15 @@ export default function PopupEditProfile({ isOpen, onClose }) {
           {descriptionErrorMessage}
         </span>
       </div>
+      <button
+        className={`button button-submit ${
+          !isFormValid ? "button__disabled" : ""
+        }`}
+        type="submit"
+        disabled={!isFormValid}
+      >
+        {isLoading ? "Salvando..." : "Salvar"}
+      </button>
     </PopupWithForm>
   );
 }

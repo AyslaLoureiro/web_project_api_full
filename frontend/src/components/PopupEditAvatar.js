@@ -57,6 +57,15 @@ export default function PopupEditAvatar({ isOpen, onClose }) {
           {linkErrorMessage}
         </span>
       </div>
+      <button
+        className={`button button-submit ${
+          !isFormValid ? "button__disabled" : ""
+        }`}
+        type="submit"
+        disabled={!isFormValid}
+      >
+        {isLoading ? "Salvando..." : "Salvar"}
+      </button>
     </PopupWithForm>
   );
 }

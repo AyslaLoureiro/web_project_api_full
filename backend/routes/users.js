@@ -23,6 +23,6 @@ router.post("/signin", login);
 router.patch("/", auth, updateUserProfile);
 
 // para trocar tudo
-router.put("/", auth, updateUserAvatar);
+router.put("/me/avatar", auth, updateUserAvatar);
 
 module.exports = router;

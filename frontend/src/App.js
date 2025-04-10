@@ -143,11 +143,12 @@ export function App() {
     setIsInfoToolTipOpen(false);
   };
 
-  const handleSubmitProfile = (name, about) => {
+  const handleSubmitProfile = (name, about, setIsLoading) => {
     // logica para trocar o nome e o about do profile
     // chamar a api para trocar o name e o about do profile
     api.editUserInfo({ name, about }).then((newUserInfo) => {
       setCurrentUser(newUserInfo);
+      setIsLoading(false);
     });
   };
 
