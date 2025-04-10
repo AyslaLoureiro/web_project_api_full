@@ -160,13 +160,12 @@ export function App() {
   };
 
   async function handleCardLike(card) {
-    console.log(">>>>>>>>>>>>>>>>>> card", card);
     // Verificar mais uma vez se esse cartão já foi curtido
     const isLiked = card.isLiked;
     if (isLiked) {
       await api
         .removeLike(card._id)
-        .then((newCard) => {
+        .then(({ newCard }) => {
           setCards((state) =>
             state.map((currentCard) =>
               currentCard._id === card._id ? newCard : currentCard
@@ -177,7 +176,7 @@ export function App() {
     } else {
       await api
         .addLike(card?._id)
-        .then((newCard) => {
+        .then(({ newCard }) => {
           console.log(">>>>>>>>>>>>>>>>>> newCard", newCard);
           setCards((state) =>
             state.map((currentCard) =>
