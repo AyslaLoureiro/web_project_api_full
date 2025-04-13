@@ -1,8 +1,8 @@
-# Web Projeto Around Auh
+# Web Projeto Around Us Fullstack
 
 ## Descrição
 
-O **Web Projeto Around Auth** Este projeto implementa um sistema de registro e autorização no front-end, incluindo a criação de rotas e redirecionamento, bem como a autenticação de usuários.
+O **Web Projeto Around Us Fullstack** Este projeto implementa um sistema de registro e autorização no front-end, incluindo a criação de rotas e redirecionamento, bem como a autenticação de usuários.
 
 ## Funcionalidades
 
