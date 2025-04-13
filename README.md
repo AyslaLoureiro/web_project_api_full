@@ -1,6 +1,6 @@
-# 🌐 web_project_api_full
+# 🌐 Around us fullstack
 
-Bem-vindo ao **web_project_api_full** – um projeto completo de backend que conecta o cliente ao servidor com autenticação segura, criação de usuários, gerenciamento de cartões e implantação em nuvem! 🚀
+Bem-vindo ao **around us fullstack** – um projeto completo de backend que conecta o cliente ao servidor com autenticação segura, criação de usuários, gerenciamento de cartões e implantação em nuvem! 🚀
 
 ## 📌 Visão Geral
 
