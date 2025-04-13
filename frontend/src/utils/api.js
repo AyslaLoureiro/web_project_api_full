@@ -114,22 +114,14 @@ class Api {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: "DELETE",
       headers: this._headers,
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        // se o servidor retornar um erro, rejeite a promessa
-        return Promise.reject(`Error: ${res.status}`);
-      })
-      .catch((err) => {
-        console.log(err); // registra o erro no console
-      });
+    }).catch((err) => {
+      console.log(err); // registra o erro no console
+    });
   }
 
   editUserPhoto({ avatar }) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
-      method: "PATCH",
+      method: "PUT",
       headers: this._headers,
       body: JSON.stringify({
         avatar,
