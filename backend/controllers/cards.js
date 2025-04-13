@@ -21,9 +21,7 @@ function createCards(req, res) {
   const { name, link } = req.body;
 
   if (!name && !link) {
-    const error = new Error("Dados inválidos");
-    error.status = 400;
-    throw error;
+    throw new AppError("Dados inválidos", 400);
   }
 
   const newCard = {

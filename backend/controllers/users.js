@@ -1,4 +1,5 @@
 const User = require("../models/user.js");
+const AppError = require("../utils/AppError.js");
 const { createHash } = require("../utils/hash.js");
 const jwt = require("jsonwebtoken");
 
@@ -6,9 +7,7 @@ function getUsers(req, res) {
   return User.find({})
     .then((users) => {
       if (!users) {
-        const error = new Error("Usuários não encontrados");
-        error.status = 404;
-        throw error;
+        throw new AppError("Usuários não encontrados", 404);
       }
 
       return res.status(200).json(users);
@@ -23,16 +22,12 @@ function getUserById(req, res) {
   const { _id } = req.user;
 
   if (!_id) {
-    const error = new Error("Dados inválidos");
-    error.status = 400;
-    throw error;
+    throw new AppError("Dados inválidos", 400);
   }
 
   return User.findById(_id)
     .orFail(() => {
-      const error = new Error("Usuário não encontrado");
-      error.status = 404;
-      throw error;
+      throw new AppError("Dados inválidos", 400);
     })
     .then((user) => {
       return res.status(200).json(user);
@@ -47,9 +42,7 @@ function login(req, res) {
   const { email, password } = req.body;
 
   if (!email && !password) {
-    const error = new Error("Dados inválidos");
-    error.status = 400;
-    throw error;
+    throw new AppError("Dados inválidos", 400);
   }
 
   return User.findUserByCredentials({
@@ -84,9 +77,7 @@ function createUser(req, res) {
   const { email, password } = req.body;
 
   if (!email && !password) {
-    const error = new Error("Dados inválidos");
-    error.status = 400;
-    throw error;
+    throw new AppError("Dados inválidos", 400);
   }
 
   const hashedPassword = createHash(password);
@@ -101,9 +92,7 @@ function createUser(req, res) {
   })
     .then((user) => {
       if (!user) {
-        const error = new Error("Error ao criar o usuário");
-        error.status = 500;
-        throw error;
+        throw new AppError("Error ao criar o usuário", 500);
       }
 
       return res.status(201).json(user);
@@ -124,16 +113,12 @@ function updateUserProfile(req, res) {
   if (about) updatedFields.about = about;
 
   if (!name && !about) {
-    const error = new Error("Dados inválidos");
-    error.status = 400;
-    throw error;
+    throw new AppError("Dados inválidos", 400);
   }
 
   return User.findByIdAndUpdate(userId, updatedFields, { new: true })
     .orFail(() => {
-      const error = new Error("Usuário não encontrado");
-      error.status = 404;
-      throw error;
+      throw new AppError("Usuário não encontrado", 404);
     })
     .then((user) => {
       return res.status(200).json(user);
@@ -149,9 +134,7 @@ function updateUserAvatar(req, res) {
   const userId = req.user._id;
 
   if (!avatar) {
-    const error = new Error("Dados inválidos");
-    error.status = 400;
-    throw error;
+    throw new AppError("Dados inválidos", 400);
   }
 
   return User.findByIdAndUpdate(
@@ -160,9 +143,7 @@ function updateUserAvatar(req, res) {
     { new: true }
   )
     .orFail(() => {
-      const error = new Error("Usuário não encontrado");
-      error.status = 404;
-      throw error;
+      throw new AppError("Usuário não encontrado", 404);
     })
     .then((user) => {
       return res.status(200).json(user);
