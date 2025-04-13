@@ -34,12 +34,9 @@ export default function PopupEditAvatar({ isOpen, onClose }) {
     <PopupWithForm
       id="popup-avatar-edit"
       title="Alterar a foto do perfil"
-      buttonName="Salvar"
       isOpen={isOpen}
       onClose={onClose}
-      isFormValid={isFormValid}
       handleSubmit={handleSubmit}
-      isLoading={isLoading}
     >
       <div className="popup__form-edit-inputs">
         <input

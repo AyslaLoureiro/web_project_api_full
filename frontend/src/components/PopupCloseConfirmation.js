@@ -12,13 +12,15 @@ export default function PopupCloseConfirmation({
 
   return (
     <PopupWithForm
-      name="confirmation"
       id="popup-delete"
       title="Tem Certeza?"
       isOpen={isOpen}
       onClose={onClose}
-      buttonName="Sim"
       handleSubmit={handleSubmit}
-    />
+    >
+      <button className={"button button-submit"} type="submit">
+        Sim
+      </button>
+    </PopupWithForm>
   );
 }

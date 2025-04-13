@@ -83,6 +83,15 @@ export default function PopupAddCard({ isOpen, onClose, handleSubmit }) {
           {linkErrorMessage}{" "}
         </span>
       </div>
+      <button
+        className={`button button-submit ${
+          !isFormValid ? "button__disabled" : ""
+        }`}
+        type="submit"
+        disabled={!isFormValid}
+      >
+        {isLoading ? "Criando..." : "Criar"}
+      </button>
     </PopupWithForm>
   );
 }
