@@ -20,7 +20,6 @@ const Register = ({ handleRegistration }) => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(data);
     if (!data.email || !data.password) {
       setError("Todos os campos são obrigatórios");
       return;

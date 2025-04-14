@@ -178,7 +178,6 @@ export function App() {
       await api
         .addLike(card?._id)
         .then(({ newCard }) => {
-          console.log(">>>>>>>>>>>>>>>>>> newCard", newCard);
           setCards((state) =>
             state.map((currentCard) =>
               currentCard?._id === card?._id ? newCard : currentCard
