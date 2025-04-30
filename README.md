@@ -14,11 +14,10 @@ Este projeto é uma API desenvolvida para gerenciar autenticação e comunicaç�
 
 ## 🛠️ Tecnologias Utilizadas
 
-- **Node.js / Express** (ou a stack que você usou)
-- **MongoDB / PostgreSQL** (dependendo do banco que você usou)
-- **JWT** para autenticação
-- **Google Cloud VM** para deploy
-- Outros: (Axios, dotenv, etc.)
+- **Node.js / Express**
+- **MongoDB / PostgreSQL**
+- **JWT**
+- **Google Cloud VM**
 
 ## 🚀 Como Rodar o Projeto Localmente
 
